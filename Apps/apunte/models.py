@@ -22,6 +22,7 @@ class Bills(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=3)
     description = models.CharField(max_length=250, null=True, blank=True)
     date = models.DateField()
+#logramos subir nuestro ´primer Proyecto
 
 
 
