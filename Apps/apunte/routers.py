@@ -7,5 +7,8 @@ from Apps.apunte.viewSets import *
 router = DefaultRouter()
 router.register('client',ClientViewSet)
 router.register('product',ProductViewSet)
-router.register('bills', BillsViewSet)
+router.register('order', OrderViewSet)
+router.register('detail', DetailViewSet)
+router.register('expense', ExpenseViewSet)
+#router.register('bills', BillsViewSet)
 

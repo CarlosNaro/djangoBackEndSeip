@@ -1,5 +1,4 @@
 #importaciones Propias 
-
 from Apps.apunte.routers import *
 from django.urls import path, include
 from Apps.apunte.viewSets import *

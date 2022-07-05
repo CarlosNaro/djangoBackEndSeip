@@ -11,6 +11,19 @@ class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 #:::
-class BillsViewSet(ModelViewSet):
-    queryset = Bills.objects.all()
-    serializer_class = BillsSerializer
+class OrderViewSet(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+#:::
+class DetailViewSet(ModelViewSet):
+    queryset = Detail.objects.all()
+    serializer_class = DetailSerializer
+#:::
+class ExpenseViewSet(ModelViewSet):
+    queryset = Expenses.objects.all()
+    serializer_class = ExpenseSerializer
+
+
+# class BillsViewSet(ModelViewSet):
+#     queryset = Bills.objects.all()
+#     serializer_class = BillsSerializer
