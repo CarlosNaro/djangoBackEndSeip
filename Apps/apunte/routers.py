@@ -10,5 +10,6 @@ router.register('product',ProductViewSet)
 router.register('order', OrderViewSet)
 router.register('detail', DetailViewSet)
 router.register('expense', ExpenseViewSet)
+router.register('orderDetails',OrderDetailListViewSet)
 #router.register('bills', BillsViewSet)
 

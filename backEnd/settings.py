@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+from datetime import timedelta
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,8 +27,55 @@ SECRET_KEY = 'django-insecure-*i+o9t-a5sbwa)j)om!1z9$fqopz#d*3fr2+f9h2i4j+@*et*=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
+
+
+
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['192.168.43.53']
+
+#  CORS_ALLOWED_ORIGINS=['']
+
+# 2do paso para la autentificación 
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework.authentication.TokenAuthentication',
+#     ),
+#         'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permission.IsAuthenticated',
+#     ),    
+# }
+
+#importaciones para la autenticación 
+
+REST_FRAMEWORK = {
+
+    #   'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework.authentication.TokenAuthentication',
+
+    # ),
+    #     'DEFAULT_PERMISSION_CLASSES': (
+    #      'rest_framework.permissions.IsAuthenticated',
+    #  ), 
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+         'rest_framework.permissions.IsAuthenticated',
+     ),  
+}
+
+
+SIMPLE_JWT = {
+    
+   'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
+#::::::::::::::::::
 
 # Application definition
 
@@ -37,16 +86,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+   
     'rest_framework',
+
+    #'rest_framework.simplejwt',
+    #'rest_framework_simplejwt.token_blacklist',
+    
+    'djoser',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt', 
+
     "corsheaders",
     'Apps.apunte',
+    
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
+    #extencion propia     
     "corsheaders.middleware.CorsMiddleware",
-
+    #default5
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

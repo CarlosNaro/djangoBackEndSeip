@@ -1,4 +1,5 @@
 # imprtaciones propias 
+from statistics import mode
 from Apps.apunte.models import *
 from Apps.apunte.serializer import *
 from rest_framework.viewsets import ModelViewSet
@@ -18,6 +19,12 @@ class OrderViewSet(ModelViewSet):
 class DetailViewSet(ModelViewSet):
     queryset = Detail.objects.all()
     serializer_class = DetailSerializer
+#:::
+
+class OrderDetailListViewSet(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderDetailListSerializer
+
 #:::
 class ExpenseViewSet(ModelViewSet):
     queryset = Expenses.objects.all()
