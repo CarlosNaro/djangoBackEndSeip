@@ -28,23 +28,11 @@ SECRET_KEY = 'django-insecure-*i+o9t-a5sbwa)j)om!1z9$fqopz#d*3fr2+f9h2i4j+@*et*=
 DEBUG = True
 
 
-
-
-
 ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = ['192.168.43.53']
 
 #  CORS_ALLOWED_ORIGINS=['']
 
-# 2do paso para la autentificación 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     ),
-#         'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permission.IsAuthenticated',
-#     ),    
-# }
 
 #importaciones para la autenticación 
 
@@ -87,18 +75,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-   
-    'rest_framework',
-
-    #'rest_framework.simplejwt',
-    #'rest_framework_simplejwt.token_blacklist',
-    
-    'djoser',
-    'rest_framework.authtoken',
-    'rest_framework_simplejwt', 
-
+    'rest_framework', 
     "corsheaders",
     'Apps.apunte',
+
+    'djoser',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     
 ]
 

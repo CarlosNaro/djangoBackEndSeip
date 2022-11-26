@@ -36,9 +36,11 @@ class Client(models.Model):
 class Order(models.Model):
     id_client = models.ForeignKey(Client, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
-
-    # def __str__(self):
-    #     return self.id_client.name
+    subTotal = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True, )
+    total = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True, )
+    
+    def __str__(self):
+        return self.id_client.name
 
 
     
@@ -48,7 +50,8 @@ class Detail(models.Model):
     id_order = models.ForeignKey(Order, on_delete= models.CASCADE, related_name='order_details' )
     amount = models.DecimalField(max_digits=8, decimal_places=3)
     price  = models.DecimalField(max_digits=8, decimal_places=3)
-
+    subTotal = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
+    total = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
 
 
 

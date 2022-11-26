@@ -36,6 +36,23 @@ class ProductSerializer(serializers.ModelSerializer):
 #     #     }
 
 
+class OrderSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Order
+        fields = '__all__'
+    
+    def to_representation(self, instance):
+        return {
+            'id':instance.id,
+            'id_client': instance.id_client.name,
+            'subTotal' : instance.subTotal if instance.subTotal == 'null' else '0' , 
+            'total' : instance.total if instance.total == 'null' else '0',
+            'date': instance.date
+
+        }
+
+
 
 class DetailSerializer(serializers.ModelSerializer):
 
@@ -53,19 +70,6 @@ class DetailSerializer(serializers.ModelSerializer):
             'amount': instance.amount,
             'price': instance.price 
         }
-
-
-class OrderSerializer(serializers.ModelSerializer):
-
-    order_details = DetailSerializer(many=True)
-    id_client = serializers.StringRelatedField()
-
-    # :::::::::::::::::::::::::::::::::   
-    class Meta: 
-        model = Order
-        fields = ['id','id_client','date','order_details']
-    
-
 
 
 
