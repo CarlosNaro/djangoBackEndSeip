@@ -80,7 +80,7 @@ INSTALLED_APPS = [
     'rest_framework', 
     "corsheaders",
     'Apps.apunte',
-    'Apps.user',
+    'Apps.users',
 
     'djoser',
     'rest_framework.authtoken',
@@ -130,7 +130,7 @@ WSGI_APPLICATION = 'backEnd.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'seipDB',
+        'NAME': 'DBseip',
         'USER': 'postgres',
         'PASSWORD': 'developer',
         'HOST': 'localhost',
@@ -169,6 +169,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+AUTH_USER_MODEL = 'users.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
