@@ -22,7 +22,4 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('apunte/', include('Apps.apunte.urls')),
     path('users/', include('Apps.users.urls')),
-    
-   
-    
 ]
