@@ -52,6 +52,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
          'rest_framework.permissions.IsAuthenticated',
+         
     ),  
 }
 
@@ -59,13 +60,21 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     
    'AUTH_HEADER_TYPES': ('JWT',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     # 'REFRESH_TOKEN_LIFETIME': timedelta(minutes=1),
-    
 }
 
 #::::::::::::::::::
+
+# DJOSER = {
+#     'SERIALIZERS': {
+#         'token': 'path.to.CustomJWTTokenSerializer',
+#         'token': 'path.to.SimpleJWTTokenSerializer',
+#         'token': 'path.to.CustomDJOSERTokenSerializer',
+#     },
+#     # ...
+# }
 
 # Application definition
 
@@ -130,7 +139,7 @@ WSGI_APPLICATION = 'backEnd.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DBseip',
+        'NAME': 'DBseip', 
         'USER': 'postgres',
         'PASSWORD': 'developer',
         'HOST': 'localhost',
