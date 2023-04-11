@@ -38,21 +38,12 @@ ALLOWED_HOSTS = ['*']
 
 REST_FRAMEWORK = {
 
-    #   'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'rest_framework.authentication.TokenAuthentication',
-
-    # ),
-    #     'DEFAULT_PERMISSION_CLASSES': (
-    #      'rest_framework.permissions.IsAuthenticated',
-    #  ), 
-
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         
     ),
     'DEFAULT_PERMISSION_CLASSES': (
          'rest_framework.permissions.IsAuthenticated',
-         
     ),  
 }
 
@@ -63,18 +54,11 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     # 'REFRESH_TOKEN_LIFETIME': timedelta(minutes=1),
+ 
 }
 
 #::::::::::::::::::
 
-# DJOSER = {
-#     'SERIALIZERS': {
-#         'token': 'path.to.CustomJWTTokenSerializer',
-#         'token': 'path.to.SimpleJWTTokenSerializer',
-#         'token': 'path.to.CustomDJOSERTokenSerializer',
-#     },
-#     # ...
-# }
 
 # Application definition
 
@@ -92,6 +76,7 @@ INSTALLED_APPS = [
     'Apps.users',
 
     'djoser',
+    
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     
