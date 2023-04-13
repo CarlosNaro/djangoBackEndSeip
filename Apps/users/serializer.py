@@ -18,6 +18,18 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"
+#emciptación de passeord
+    def create(self, validated_data):  
+        user = User(**validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
+    # def update(self, instance, validated_data): #emciptación del passeord al ser actualizada
+    #     update_user = super().update(instance, validated_data)
+    #     update_user.set_password(validated_data['password'])
+    #     update_user.save()
+    #     return update_user
+    
 
 
 
