@@ -1,11 +1,8 @@
 #importaciones propias
-
 from rest_framework import serializers
 from Apps.users.models import *
-
-
+from django.contrib.auth.hashers import make_password
 #:::::
-
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.response import Response
@@ -18,17 +15,16 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"
-#emciptación de passeord
-    def create(self, validated_data):  
-        user = User(**validated_data)
-        user.set_password(validated_data['password'])
-        user.save()
-        return user
-    # def update(self, instance, validated_data): #emciptación del passeord al ser actualizada
-    #     update_user = super().update(instance, validated_data)
-    #     update_user.set_password(validated_data['password'])
-    #     update_user.save()
-    #     return update_user
+
+    def create(self, validated_data, ):
+        password = validated_data.pop('password')
+        usuario = User(**validated_data)
+        usuario.password = make_password(password)
+        usuario.save()
+        return usuario
+
+
+
     
 
 
@@ -60,3 +56,27 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         return response
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #emciptación de passeord
+#     def create(self, validated_data):  
+#         user = User(**validated_data)
+#         user.set_password(validated_data['password'])
+#         user.save()
+#         return user
+    # def update(self, instance, validated_data): #emciptación del passeord al ser actualizada
+    #     update_user = super().update(instance, validated_data)
+    #     update_user.set_password(validated_data['password'])
+    #     update_user.save()
+    #     return update_user
