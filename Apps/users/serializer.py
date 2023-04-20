@@ -16,20 +16,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = "__all__"
 
-    def create(self, validated_data, ):
-        password = validated_data.pop('password')
-        usuario = User(**validated_data)
-        usuario.password = make_password(password)
-        usuario.save()
-        return usuario
-
-
-
-    
-
-
-
-
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):

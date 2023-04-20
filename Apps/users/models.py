@@ -5,53 +5,32 @@ from django.utils import timezone
 from django.contrib.auth.hashers import make_password
 
 
-# class UserManager(BaseUserManager):
-
-#     def _create_user(self, username, email, password, is_staff, is_superuser, **extra_fields):
-#         now = timezone.now()
-#         if not username:
-#             raise ValueError(('The given username must be set'))
-#         email = self.normalize_email(email)
-#         user = self.model(username=username, email=email,
-#                         is_staff=is_staff, 
-#                         is_superuser=is_superuser,   
-#                         **extra_fields)
-#         user.set_password(password)
-#         user.save(using=self._db)
-#         return user
-
-#     def create_user(self, username, email=None, password=None, **extra_fields):
-#         return self._create_user(username, email, password, False, False, ' ',
-#                                  **extra_fields)
-
-#     def create_superuser(self, username, email, password, **extra_fields):
-#         user = self._create_user(username, email, password, True, True,
-#                                  **extra_fields)
-#         user.is_active = True
-#         user.save(using=self._db)
-#         return user
-
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None):
-        if not email:
-            raise ValueError('El email es obligatorio')
 
-        user = self.model(
-            email=self.normalize_email(email),
-        )
-
+    def _create_user(self, username, email, password, is_staff, is_superuser, **extra_fields):
+        now = timezone.now()
+        if not username:
+            raise ValueError(('The given username must be set'))
+        email = self.normalize_email(email)
+        user = self.model(username=username, email=email,
+                        is_staff=is_staff, 
+                        is_superuser=is_superuser,   
+                        **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password):
-        user = self.create_user(
-            email=self.normalize_email(email),
-            password=password,
-        )
-        user.is_staff = True
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        return self._create_user(username, email, password, False, False, ' ',
+                                 **extra_fields)
+
+    def create_superuser(self, username, email, password, **extra_fields):
+        user = self._create_user(username, email, password, True, True,
+                                 **extra_fields)
+        user.is_active = True
         user.save(using=self._db)
         return user
+
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -66,13 +45,15 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email', ]
+    REQUIRED_FIELDS = ['email']
 
-    def save(self):
+# encriptación de la contraseña al momento 
+# de guardar un usuario ya sea el crearse o actualizarse
+    def save(self,*args, **kwargs):
         self.password = make_password(self.password)
-        return super().save()
+        return super().save(*args, **kwargs)
 
- 
+    
 
     # is_administrator  = models.BooleanField(default=False)
     # is_superuser = models.BooleanField(default=False)
@@ -82,3 +63,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # address = models.CharField(max_length=300,  blank=True, null=True)
     # city = models.CharField(max_length=30, blank=True, null=True)
     # about_me = models.TextField(max_length=500, blank=True, null=True)
+
+
+
+
