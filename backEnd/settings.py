@@ -125,7 +125,7 @@ WSGI_APPLICATION = 'backEnd.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DBseip', 
+        'NAME': 'DBprubeSEIP', 
         'USER': 'postgres',
         'PASSWORD': 'developer',
         'HOST': 'localhost',
