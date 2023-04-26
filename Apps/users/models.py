@@ -1,3 +1,4 @@
+from typing import Iterable
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
@@ -33,25 +34,42 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=250, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default = False)
-    profile_image = models.ImageField(upload_to='perfil/',null=True,blank=True)
-
-    objects = UserManager()
+    profile_image = models.ImageField(upload_to='perfil/',null=True,blank=True, default='perfil/default.png' )
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
+
+    objects = UserManager()
+
+    def save(self,*args, **options ):
+        self.password = make_password(self.password)
+        # print("as ", super().save(*args, **kwargs))
+        super().save(*args, **options)
+
+
+
+    # def save(self, *args, **kwargs):
+    #         self.password = make_password(self.password)
+    #         super().save(*args, **kwargs)
+
+    # def save(self, *args, **kwargs):
+    #     if self.password:
+    #         self.password = make_password(self.password)
+    #     super(User, self).save(*args, **kwargs)
     
 # encriptación de la contraseña al momento 
 # de guardar un usuario ya sea el crearse o actualizarse
 
-    def save(self,*args, **kwargs):
-        self.password = make_password(self.password)
-        # print("as ", super().save(*args, **kwargs))
-        return super().save(*args,**kwargs)
+    # def save(self,**kwargs):
+    #     self.password = make_password(self.password)
+    #     # print("as ", super().save(*args, **kwargs))
+    #     return super().save(**kwargs)
+
     
 
         # def save(self,*args, **kwargs):
-        # self.password = make_password(self.password)
-        # return super().save(*args, **kwargs)
+        #     self.password = make_password(self.password)
+        #     return super().save(*args, **kwargs)
 
     
 
