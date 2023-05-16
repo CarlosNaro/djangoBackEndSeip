@@ -1,27 +1,26 @@
 #importaciones propias
 from rest_framework import serializers
-from Apps.users.models import *
+from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 #:::::
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.response import Response
 
-#::
-
-
-#create your Serializer here 
+# create your Serializer here 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = "__all__"
+        fields = ['id','username', 'first_name', 'last_name', 'email','is_staff','is_active',]
+        # fields = "__all__"
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
-        # data['id'] = self.user.id
+        data['id'] = self.user.id
         data['username'] = self.user.username
-        data['is_admin'] = self.user.is_superuser
+        data['is_staff'] = self.user.is_staff
+        # data['is_staff'] = self.user.is_superuser
         return data
 
 class CustomTokenObtainPairView(TokenObtainPairView):
@@ -33,12 +32,13 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
         response.data.update({
-            #'id': data['id'],
+            'id': data['id'],
             'username': data['username'],
             # 'email': data['email'],
-            'is_admin': data['is_admin'],
+            'is_staff': data['is_staff'],
         })
         return response
+
 
 
 

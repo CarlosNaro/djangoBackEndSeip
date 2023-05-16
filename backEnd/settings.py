@@ -125,7 +125,7 @@ WSGI_APPLICATION = 'backEnd.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DBprubeSEIP', 
+        'NAME': 'DBCurso', 
         'USER': 'postgres',
         'PASSWORD': 'developer',
         'HOST': 'localhost',
@@ -165,7 +165,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'users'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
