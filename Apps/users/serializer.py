@@ -11,7 +11,7 @@ from rest_framework.response import Response
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','username', 'first_name', 'last_name', 'email','is_staff','is_active',]
+        fields = ['id', 'first_name', 'last_name', 'username', 'email','is_staff','is_active',]
         # fields = "__all__"
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):

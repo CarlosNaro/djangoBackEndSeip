@@ -72,7 +72,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'rest_framework', 
-    "corsheaders",
+    'corsheaders',
     'Apps.apunte',
     'Apps.users',
 
@@ -80,7 +80,6 @@ INSTALLED_APPS = [
     
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
-    
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
