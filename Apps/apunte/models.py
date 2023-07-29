@@ -46,8 +46,8 @@ class Order(models.Model):
     
 # tabla Detail 
 class Detail(models.Model):
-    id_product = models.ForeignKey(Product, on_delete= models.CASCADE)
     id_order = models.ForeignKey(Order, on_delete= models.CASCADE, related_name='order_details' )
+    id_product = models.ForeignKey(Product, on_delete= models.CASCADE)
     amount = models.DecimalField(max_digits=8, decimal_places=3)
     price  = models.DecimalField(max_digits=8, decimal_places=3)
     subTotal = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)

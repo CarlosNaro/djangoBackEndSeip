@@ -19,9 +19,10 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-
+# from ..Apps.users.urls import password_reset, password_reset_confirm
 from django.contrib import admin
 from django.urls import path, include
+
 
 from Apps.users.serializer import CustomTokenObtainPairView   # token serializado
 
@@ -29,8 +30,11 @@ from Apps.users.serializer import CustomTokenObtainPairView   # token serializad
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('auth/', include('djoser.urls')),
-    #path('auth/', include('djoser.urls.jwt')),
+    # ***** djoser 
+    # path('auth/', include('djoser.urls')),
+    # path('auth/', include('djoser.urls.jwt')),
+    # ***** djoser 
+
     path('apunte/', include('Apps.apunte.urls')),
     path('users/', include('Apps.users.urls')),
     

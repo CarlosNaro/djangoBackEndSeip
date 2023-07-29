@@ -49,13 +49,33 @@ REST_FRAMEWORK = {
 }
 
 
+
 SIMPLE_JWT = {
     
    'AUTH_HEADER_TYPES': ('JWT',),
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     # 'REFRESH_TOKEN_LIFETIME': timedelta(minutes=1),
+    # "ROTATE_REFRESH_TOKENS": False,
+
+    # "UPDATE_LAST_LOGIN": False,
  
+}
+
+
+# Other Djoser settings... es necesario este enlace 
+
+DJOSER = {
+    # ... Otras configuraciones de Djoser ...
+
+    # Vista para solicitar el restablecimiento de contraseña (Enviar el correo electrónico de restablecimiento)
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}', 
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    # Ruta para redirigir al cliente después de que se complete el restablecimiento de contraseña
+    # 'PASSWORD_RESET_CONFIRM_REVERSE': 'password_reset_confirm',
 }
 
 #::::::::::::::::::
@@ -103,6 +123,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
+        # 'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Ruta a tus plantillas
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,7 +145,7 @@ WSGI_APPLICATION = 'backEnd.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DBCurso', 
+        'NAME': 'DBseip', 
         'USER': 'postgres',
         'PASSWORD': 'developer',
         'HOST': 'localhost',
@@ -176,3 +197,13 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# Configuración de correos electrónicos
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_HOST = 'smtp.gmail.com'  # Por ejemplo, smtp.gmail.com para Gmail
+EMAIL_PORT = 587  # Puerto del servidor SMTP (587 para TLS)
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'alonsonaro75@gmail.com'  # Tu dirección de correo electrónico
+EMAIL_HOST_PASSWORD = 'owothyjshdhamysu'  # Tu contraseña de correo electrónico
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
