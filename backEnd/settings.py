@@ -22,58 +22,47 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*i+o9t-a5sbwa)j)om!1z9$fqopz#d*3fr2+f9h2i4j+@*et*='
+SECRET_KEY = "django-insecure-*i+o9t-a5sbwa)j)om!1z9$fqopz#d*3fr2+f9h2i4j+@*et*="
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # DEBUG = True
 
-
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 # ALLOWED_HOSTS = ['192.168.43.53']
 
 #  CORS_ALLOWED_ORIGINS=['']
 
-
-#importaciones para la autenticación 
+# importaciones para la autenticación
 
 REST_FRAMEWORK = {
-
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-         'rest_framework.permissions.IsAuthenticated',
-    ),  
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
-
 
 
 SIMPLE_JWT = {
-    
-   'AUTH_HEADER_TYPES': ('JWT',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=50),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    "AUTH_HEADER_TYPES": ("JWT",),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=50),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     # 'REFRESH_TOKEN_LIFETIME': timedelta(minutes=1),
     # "ROTATE_REFRESH_TOKENS": False,
-
     # "UPDATE_LAST_LOGIN": False,
- 
 }
 
 
-# Other Djoser settings... es necesario este enlace 
+# Other Djoser settings... es necesario este enlace
 
 DJOSER = {
     # ... Otras configuraciones de Djoser ...
-
     # Vista para solicitar el restablecimiento de contraseña (Enviar el correo electrónico de restablecimiento)
-    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}', 
-    'PASSWORD_RESET_CONFIRM_RETYPE': True,
-    'PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND': True,
-    'ACTIVATION_URL': '#/activate/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL': True,
+    "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
+    "PASSWORD_RESET_CONFIRM_RETYPE": True,
+    "PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND": True,
+    "ACTIVATION_URL": "#/activate/{uid}/{token}",
+    "SEND_ACTIVATION_EMAIL": True,
     # Ruta para redirigir al cliente después de que se complete el restablecimiento de contraseña
     # 'PASSWORD_RESET_CONFIRM_REVERSE': 'password_reset_confirm',
 }
@@ -84,72 +73,72 @@ DJOSER = {
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    
-    'rest_framework', 
-    'corsheaders',
-    'Apps.apunte',
-    'Apps.users',
-
-    'djoser',
-    
-    'rest_framework.authtoken',
-    'rest_framework_simplejwt',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "corsheaders",
+    "Apps.apunte",
+    "Apps.users",
+    "djoser",
+    "rest_framework.authtoken",
+    "rest_framework_simplejwt",
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
-    #extencion propia     
+    # extencion propia
     "corsheaders.middleware.CorsMiddleware",
-    #default5
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # default5
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'backEnd.urls'
+ROOT_URLCONF = "backEnd.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        # 'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Ruta a tus plantillas
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'backEnd.wsgi.application'
+WSGI_APPLICATION = "backEnd.wsgi.application"
 
+# AUTHENTICATION_BACKENDS = [
+#     'Apps.users.backends.EmailBackend',  # Replace 'your_app' with the name of your app.
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DBseip', 
-        'USER': 'postgres',
-        'PASSWORD': 'developer',
-        'HOST': 'localhost',
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "DBseip",
+        "USER": "postgres",
+        "PASSWORD": "developer",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
@@ -159,16 +148,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -176,9 +165,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'es-pe'
+LANGUAGE_CODE = "es-pe"
 
-TIME_ZONE = 'America/Lima'
+TIME_ZONE = "America/Lima"
 
 USE_I18N = True
 
@@ -190,20 +179,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # Configuración de correos electrónicos
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_HOST = 'smtp.googlemail.com'
-EMAIL_HOST = 'smtp.gmail.com'  # Por ejemplo, smtp.gmail.com para Gmail
+EMAIL_HOST = "smtp.gmail.com"  # Por ejemplo, smtp.gmail.com para Gmail
 EMAIL_PORT = 587  # Puerto del servidor SMTP (587 para TLS)
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'alonsonaro75@gmail.com'  # Tu dirección de correo electrónico
-EMAIL_HOST_PASSWORD = 'owothyjshdhamysu'  # Tu contraseña de correo electrónico
+EMAIL_HOST_USER = "alonsonaro75@gmail.com"  # Tu dirección de correo electrónico
+EMAIL_HOST_PASSWORD = "owothyjshdhamysu"  # Tu contraseña de correo electrónico
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
