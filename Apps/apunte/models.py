@@ -17,9 +17,9 @@ class Product(models.Model):
 # tabla Cliente
 class Client(models.Model):
     name = models.CharField(max_length=250)
-    document = models.CharField(max_length=8, null=True, blank=True)
+    document = models.IntegerField(null=True, blank=True)
     description = models.CharField(max_length=250, null=True, blank=True)
-    phone = models.CharField(max_length=250, null=True, blank=True)
+    phone = models.IntegerField(null=True, blank=True)
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):
