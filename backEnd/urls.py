@@ -26,10 +26,3 @@ urlpatterns = [
     path("auth/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("change-password/", Change_Password, name="change-password"),
 ]
-
-# path('auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-
-# ***** djoser
-# path('auth/', include('djoser.urls')),
-# path('auth/', include('djoser.urls.jwt')),
-# ***** djoser

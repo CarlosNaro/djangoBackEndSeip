@@ -8,7 +8,8 @@ class Product(models.Model):
     name = models.CharField(max_length=250)
     description = models.CharField(max_length=250, null=True, blank=True)
     date = models.DateField(auto_now_add=True)
-
+    # stock= models.PositiveIntegerField(null=True, blank=True)
+    # image = models.ImageField(upload_to='products/', blank=True)  # Campo para la imagen del producto 
     def __str__(self):
         text = "{0} {1}"
         return text.format(self.name, self.description)

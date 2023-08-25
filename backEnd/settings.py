@@ -53,21 +53,7 @@ SIMPLE_JWT = {
 }
 
 
-# Other Djoser settings... es necesario este enlace
 
-DJOSER = {
-    # ... Otras configuraciones de Djoser ...
-    # Vista para solicitar el restablecimiento de contraseña (Enviar el correo electrónico de restablecimiento)
-    "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
-    "PASSWORD_RESET_CONFIRM_RETYPE": True,
-    "PASSWORD_RESET_SHOW_EMAIL_NOT_FOUND": True,
-    "ACTIVATION_URL": "#/activate/{uid}/{token}",
-    "SEND_ACTIVATION_EMAIL": True,
-    # Ruta para redirigir al cliente después de que se complete el restablecimiento de contraseña
-    # 'PASSWORD_RESET_CONFIRM_REVERSE': 'password_reset_confirm',
-}
-
-#::::::::::::::::::
 
 
 # Application definition
@@ -83,7 +69,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "Apps.apunte",
     "Apps.users",
-    "djoser",
+    # "djoser",
     "rest_framework.authtoken",
     "rest_framework_simplejwt",
 ]
